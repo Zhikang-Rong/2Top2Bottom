@@ -16,6 +16,12 @@
     "browser_action": {
         "default_icon": "assets/icons/logo.png",
         "default_title": "2t2b",
-        "default_popup": "options.html"
+        "default_popup": "popup/options.html"
+    },
+
+    "page_action": {
+        "default_icon": "assets/icons/logo.png",
+        "default_title": "2t2b",
+        "default_popup": "button/button.html"
     }
 }
