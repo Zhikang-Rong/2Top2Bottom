@@ -19,9 +19,11 @@
         "default_popup": "popup/options.html"
     },
 
-    "page_action": {
-        "default_icon": "assets/icons/logo.png",
-        "default_title": "2t2b",
-        "default_popup": "button/button.html"
-    }
+    "content_scripts": [
+        {
+            "matches": ["*://*/*"],
+            "css": ["button/button.css"],
+            "js": ["button/button.js"]
+        }
+    ]
 }
