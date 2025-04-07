@@ -13,17 +13,24 @@
         "storage"
     ],
 
+    "content_scripts": [
+        {
+            "matches": ["*://*/*"],
+            "js": ["button/button.js"]
+        }
+    ],
+
     "browser_action": {
         "default_icon": "assets/icons/logo.png",
         "default_title": "2t2b",
         "default_popup": "popup/options.html"
     },
-
-    "content_scripts": [
-        {
-            "matches": ["*://*/*"],
-            "css": ["button/button.css"],
-            "js": ["button/button.js"]
-        }
-    ]
+    "web_accessible_resources": [
+    "assets/icons/arrow-black-32.png",
+    "assets/icons/arrow-black-48.png",
+    "assets/icons/arrow-black-64.png",
+    "assets/icons/arrow-white-32.png",
+    "assets/icons/arrow-white-48.png",
+    "assets/icons/arrow-white-64.png"
+  ]
 }
