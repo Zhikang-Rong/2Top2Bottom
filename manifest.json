@@ -26,11 +26,11 @@
         "default_popup": "popup/options.html"
     },
     "web_accessible_resources": [
-    "assets/icons/arrow-black-32.png",
-    "assets/icons/arrow-black-48.png",
-    "assets/icons/arrow-black-64.png",
-    "assets/icons/arrow-white-32.png",
-    "assets/icons/arrow-white-48.png",
-    "assets/icons/arrow-white-64.png"
-  ]
+        "assets/icons/arrow-black-32.png",
+        "assets/icons/arrow-black-48.png",
+        "assets/icons/arrow-black-64.png",
+        "assets/icons/arrow-white-32.png",
+        "assets/icons/arrow-white-48.png",
+        "assets/icons/arrow-white-64.png"
+    ]
 }
