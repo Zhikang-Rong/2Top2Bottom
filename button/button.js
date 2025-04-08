@@ -1,4 +1,4 @@
-
+globalThis.browser ??= globalThis.chrome;
     function setPosition(btns, positionBtn, sizeBtn){
       let style;
       if(btns == "0" || btns == "1"){
@@ -209,7 +209,28 @@
         element.remove();
             
     }
-    
+
+document.addEventListener("visibilitychange", () => {
+  chrome.storage.local.get("config2t2b", function(result){
+    if(chrome.runtime.lastError || result.config2t2b == undefined){
+      let config2t2b = {
+        btns: "0",
+        colorArrow: "black",
+        colorBg: "white",
+        positionBtn: "bottomRight",
+        sizeBtn: "48"
+      };
+      chrome.storage.local.set({config2t2b});
+            
+      chrome.storage.local.get("config2t2b").then((result) => insertButton(result));
+    }else{
+      insertButton(result);
+    }
+    return;
+  });
+
+});
+
 chrome.storage.local.get("config2t2b", function(result){
   if(chrome.runtime.lastError || result.config2t2b == undefined){
     let config2t2b = {
@@ -220,8 +241,8 @@ chrome.storage.local.get("config2t2b", function(result){
       sizeBtn: "48"
     };
     chrome.storage.local.set({config2t2b});
-    chrome.storage.local.get("config2t2b")
-    .then((result) => insertButton(result));
+          
+    chrome.storage.local.get("config2t2b").then((result) => insertButton(result));
   }else{
     insertButton(result);
   }
@@ -245,6 +266,12 @@ chrome.runtime.onMessage.addListener(
         insertButton(result);
         return;
       });
+    }
+    if(request.subject == "config"){
+      chrome.storage.local.get("config2t2b", function(result){
+          sendResponse(result.config2t2b);
+      });
+      return true;
     }
   }
 );
