@@ -211,8 +211,17 @@ function removeExistingButton() {
         element.remove();
             
 }
-//code for updating button after config change in tabs that aren't currently active without reloading page
+
+//starting
+start2t2b();
+
+//code for updating button (after config change) in tabs that aren't currently active without reloading page
 document.addEventListener("visibilitychange", () => {
+  start2t2b();
+});
+
+//function to start
+function start2t2b() {
   chrome.storage.local.get("config2t2b", function(result){
     if(chrome.runtime.lastError || result.config2t2b == undefined){
       let config2t2b = {
@@ -228,29 +237,10 @@ document.addEventListener("visibilitychange", () => {
     }else{
       insertButton(result);
     }
-    return;
+    return true;
   });
+}
 
-});
-
-//start
-chrome.storage.local.get("config2t2b", function(result){
-  if(chrome.runtime.lastError || result.config2t2b == undefined){
-    let config2t2b = {
-      btns: "0",
-      colorArrow: "black",
-      colorBg: "white",
-      positionBtn: "bottomRight",
-      sizeBtn: "48"
-    };
-    chrome.storage.local.set({config2t2b});
-          
-    chrome.storage.local.get("config2t2b").then((result) => insertButton(result));
-  }else{
-    insertButton(result);
-  }
-  return;
-});
 
 //Message receiver
 chrome.runtime.onMessage.addListener(
