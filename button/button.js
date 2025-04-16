@@ -1,4 +1,4 @@
-globalThis.browser ??= globalThis.chrome;
+
 function setPosition(btns, positionBtn, sizeBtn){
   let style;
     if(btns == "0" || btns == "1"){
@@ -103,6 +103,8 @@ function setImage(sizeBtn,colorArrow){
 }
 
 function insertButton(result) {
+  console.log("inserting");
+  
   removeExistingButton();
   //set variables
   let btns = result.config2t2b.btns;
@@ -203,17 +205,18 @@ function insertButton(result) {
 }
 
 function removeExistingButton() {
-      let element = document.getElementById("2t2b-top");
-      if(element != null)
-        element.remove();
-      element = document.getElementById("2t2b-bottom");
-      if(element != null)
-        element.remove();
+  let element = document.getElementById("2t2b-top");
+  if(element != null)
+    element.remove();
+  element = document.getElementById("2t2b-bottom");
+  if(element != null)
+    element.remove();
             
 }
 
 //starting
 start2t2b();
+
 
 //code for updating button (after config change) in tabs that aren't currently active without reloading page
 document.addEventListener("visibilitychange", () => {
@@ -224,6 +227,8 @@ document.addEventListener("visibilitychange", () => {
 function start2t2b() {
   chrome.storage.local.get("config2t2b", function(result){
     if(chrome.runtime.lastError || result.config2t2b == undefined){
+      console.log("start 1");
+      
       let config2t2b = {
         btns: "0",
         colorArrow: "black",
@@ -233,8 +238,10 @@ function start2t2b() {
       };
       chrome.storage.local.set({config2t2b});
             
-      chrome.storage.local.get("config2t2b").then((result) => insertButton(result));
+      chrome.storage.local.get("config2t2b",(result) => {insertButton(result)});
     }else{
+      console.log("start 2");
+      
       insertButton(result);
     }
     return true;
